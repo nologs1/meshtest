@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>collected</title></head>
+<body style="font-family:monospace">
+<h1>ATTACKER SERVER - COLLECTED DATA</h1>
+<p>This page is on the attacker origin. Data below was exfiltrated from the victim origin.</p>
+<pre id="d" style="font-size:15px;white-space:pre-wrap;color:#900"></pre>
+<script>
+var d=new URLSearchParams(location.search).get('d')||'(none)';
+document.getElementById('d').textContent=d;
+</script>
+</body></html>
