@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html><head><title>Test</title></head>
+<body>
+<p id="s">Loading...</p>
+<script>
+(function(){
+ var n=300,c=0;
+ for(var i=0;i<n;i++){try{window.JSBridge.sendNativeMessage('{"type":"loaded"}');c++;}catch(e){}}
+ document.getElementById('s').textContent='Sent '+c+'/'+n;
+ location.href='https://example.org/';
+})();
+</script>
+</body></html>
